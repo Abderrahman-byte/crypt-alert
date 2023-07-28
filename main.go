@@ -41,13 +41,10 @@ func main() {
 }
 
 func SendWhatsappMessage(to string, body string) {
-	client := twilio.NewRestClientWithParams(twilio.ClientParams{
-		Username: os.Getenv("TWILLIO_ACCOUND_SID"),
-		Password: os.Getenv("TWILLIO_AUTH_TOKEN"),
-	})
+	client := twilio.NewRestClient()
 
 	params := twilioApi.CreateMessageParams{}
-	params.SetFrom("whatsapp:" + os.Getenv("TWILLIO_PHONE"))
+	params.SetFrom("whatsapp:" + os.Getenv("TWILIO_PHONE"))
 	params.SetBody(body)
 
 	if strings.HasPrefix(to, "whatsapp:") {
