@@ -3,12 +3,11 @@ package utils
 import (
 	"github.com/twilio/twilio-go"
 	twilioApi "github.com/twilio/twilio-go/rest/api/v2010"
-	"log"
 	"os"
 	"strings"
 )
 
-func SendWhatsappMessage(to string, body string) {
+func SendWhatsappMessage(to string, body string) error {
 	client := twilio.NewRestClient()
 
 	params := twilioApi.CreateMessageParams{}
@@ -23,7 +22,5 @@ func SendWhatsappMessage(to string, body string) {
 
 	_, err := client.Api.CreateMessage(&params)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+	return err
 }

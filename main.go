@@ -26,11 +26,11 @@ func main() {
 			return c.JSON(fiber.Map{"success": true})
 		}
 
-        body := *message.Body
-        from := *message.From
+		body := *message.Body
+		from := *message.From
 
-        log.Printf("received message from %s : %s\n", from, body)
-		utils.SendWhatsappMessage(from, "You said: "+ body)
+		log.Printf("received message from %s : %s\n", from, body)
+		go utils.SendWhatsappMessage(from, "You said: "+body)
 
 		return c.JSON(fiber.Map{"success": true})
 	})
